@@ -3,19 +3,18 @@
 }
 
 @using Animal_shelter.Models;
+@model List<Animal_shelter.Models.Animal>;
 
 <h1>Animals</h1>
 
-@if (@Model.Count == 0)
-{
-  <h3>No animals have been added yet!</h3>
-}
-
-@foreach (Animal animal in Model)
-{
-  <li>@animal.Type</li>
-  <li>@animal.Name</li>
-  <li>@animal.Gender</li>
-  <li>@animal.Breed</li>
-  <li>@animal.Date</li>
-}
+<ul>
+  @foreach (Animal animal in Model)
+  {
+    <li>@Html.ActionLink($"{animal.Type}", "Details", new { id = animal.AnimalId })</li>
+    <li>@Html.ActionLink($"{animal.Name}", "Details", new { id = animal.AnimalId })</li>
+    <li>@Html.ActionLink($"{animal.Gender}", "Details", new { id = animal.AnimalId })</li>
+    <li>@Html.ActionLink($"{animal.Breed}", "Details", new { id = animal.AnimalId })</li>
+    <li>@Html.ActionLink($"{animal.Date}", "Details", new { id = animal.AnimalId })</li>
+  }
+</ul>
+<p>@Html.ActionLink("Add new animal", "Create")</p>
